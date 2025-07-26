@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALAXY-GATE-COSMIC-HUB-FLASH-ORG-WELT - Unified Master</title>
+    <meta name="description" content="Plattformübergreifendes holographisches Betriebssystem-Interface">
+    <meta name="theme-color" content="#001f3f">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==================================================
+           Basis-Layout & Kybernetisch-Mystisches Design
+           ================================================== */
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background: radial-gradient(ellipse at center, #001f3f 0%, #000000 70%);
+            color: #88d8ff;
+            font-family: 'Courier Prime', monospace;
+            touch-action: pan-y;
+            scroll-behavior: smooth;
+        }
+
+        #container {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* ==================================================
+           3D Canvas Container (Hintergrund)
+           ================================================== */
+        #threejs-background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==================================================
+           Header & Navigation
+           ================================================== */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem 0;
+            text-align: center;
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #b3e0ff;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            text-shadow: 0 0 10px #00ffff;
+            margin: 0;
+            padding: 0 1rem;
+        }
+
+        header p {
+            color: #a0f0ff;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            margin-top: 0.5rem;
+            padding: 0 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        nav ul li {
+            margin: 0 0.3rem;
+        }
+
+        nav ul li a {
+            color: #e0f2ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            border: 1px solid #00ff9d;
+            color: #00ff9d;
+            box-shadow: 0 0 8px #00ff9d;
+            text-shadow: 0 0 5px #00ff9d;
+        }
+
+        /* ==================================================
+           Inhaltsbereiche (Sections)
+           ================================================== */
+        .content-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(0, 10, 20, 0.6);
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            color: #c0f0ff;
+        }
+
+        .content-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ff9d;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            border-bottom: 2px solid #00ff9d;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
+        }
+
+        .content-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .content-section p, .content-section li {
+            color: #e0f2ff;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 1rem;
+        }
+
+        .content-section strong {
+            color: #00ffff;
+            text-shadow: 0 0 3px #00ffff;
+        }
+
+        .code-block {
+            background: rgba(10, 25, 40, 0.8);
+            border: 1px dashed #ff00ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-x: auto;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 70vh;
+            border: 1px solid #00ff9d;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            background: rgba(0, 10, 20, 0.7);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #00ffff55;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 2px solid #00ff9d;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
+        .image-container p {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #a0f0ff;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .platform-card {
+            background: rgba(0, 20, 40, 0.7);
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .platform-card h3 {
+            color: #00ff9d;
+            margin-top: 0;
+            border-bottom: 1px solid #00ff9d;
+            padding-bottom: 0.5rem;
+        }
+
+        .platform-card ul {
+            padding-left: 1.5rem;
+        }
+
+        .platform-card li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* ==================================================
+           HUD & Info Panel (im Vordergrund)
+           ================================================== */
+        .hud-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(0, 30, 50, 0.7);
+            padding: 15px 20px;
+            border: 1px solid #00ffff88;
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 15px #00ffff55;
+            pointer-events: auto;
+            color: #a0f0ff;
+            max-width: min(90vw, 350px);
+            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+        }
+        .hud-panel h2, .hud-panel h3 {
+            color: #00ff9d;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            text-shadow: 0 0 3px #00ff9d;
+        }
+         .hud-panel p {
+            margin: 4px 0;
+            line-height: 1.5;
+         }
+        .hud-panel span {
+             color: #ffffff;
+             font-weight: bold;
+             text-shadow: 0 0 2px #ffffff;
+        }
+
+        #info-version {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            color: #00ff9d;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            background: rgba(0, 30, 50, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #00ffff88;
+            backdrop-filter: blur(5px);
+            pointer-events: auto;
+        }
+
+        /* ==================================================
+           Overlay & Content Popup
+           ================================================== */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 10, 20, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        #content-popup {
+            background: rgba(0, 40, 70, 0.98);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00ffffaa;
+            box-shadow: 0 0 30px #00ffff88;
+            max-width: min(90vw, 800px);
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            color: #c0f0ff;
+        }
+        #content-popup h3 {
+             color: #00ff9d;
+             font-family: 'Orbitron', sans-serif;
+             margin-top: 0;
+             margin-bottom: 15px;
+             font-size: clamp(1.2rem, 4vw, 1.5rem);
+        }
+         #content-popup p {
+             line-height: 1.6;
+             margin-bottom: 10px;
+             font-size: clamp(0.9rem, 3vw, 1rem);
+         }
+        #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #00ff9d;
+            font-size: 30px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+        }
+        #closeButton:hover {
+             color: #ffffff;
+        }
+         #chatanalyse-content, #wichtige-info-content-overlay {
+             margin-top: 20px;
+             padding: 15px;
+             border: 1px dashed #00ffff88;
+             border-radius: 5px;
+             background: rgba(0, 10, 20, 0.5);
+         }
+         #wichtige-info-text-overlay {
+            text-shadow: 0 0 5px #00ffff;
+            white-space: pre-line;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+         }
+
+        /* ==================================================
+           Buttons (Corner, Wichtige Infos)
+           ================================================== */
+        .corner-button {
+            position: absolute;
+            width: clamp(50px, 8vw, 70px);
+            height: clamp(50px, 8vw, 70px);
+            border: 2px solid #00ff9d;
+            background: linear-gradient(145deg, rgba(0, 50, 80, 0.8), rgba(0, 20, 40, 0.9));
+            color: #00ff9d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(8px, 1.8vw, 11px);
+            line-height: 1.2;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            z-index: 15;
+            pointer-events: auto;
+            font-family: 'Orbitron', sans-serif;
+            user-select: none;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .corner-button:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+            transform: translateY(-5px) translateZ(15px) scale(1.05);
+            background: linear-gradient(145deg, rgba(0, 70, 100, 0.9), rgba(0, 30, 60, 1));
+            color: #fff;
+        }
+
+        /* --- Positionierung der Corner Buttons --- */
+        #corner-xeniki { top: 100px; left: 20px; }
+        #corner-xeni { top: 100px; right: 20px; }
+        #corner-minixeniki { bottom: 120px; left: 20px; }
+        #corner-microxeniki { bottom: 120px; right: 20px; }
+        #corner-sagemirok { top: 180px; left: 20px; }
+        #corner-orgmagier { top: 180px; right: 20px; }
+        #corner-aiczki { bottom: 200px; left: 20px; }
+        #corner-konbinella { bottom: 200px; right: 20px; }
+        #corner-systemcheck { top: 260px; left: 20px; }
+        #corner-funktionen { top: 260px; right: 20px; }
+        #corner-protokolle { bottom: 280px; left: 20px; }
+        #corner-verlauf { bottom: 280px; right: 20px; }
+
+        .mobile-corner-grid {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            z-index: 15;
+            pointer-events: none;
+            justify-content: center;
+        }
+
+        .mobile-corner-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            pointer-events: none;
+        }
+
+         /* Wichtige Infos Button */
+        #wichtige-infos-button-container {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1500;
+            pointer-events: auto;
+        }
+        #wichtige-infos-button {
+            padding: 12px 25px;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            cursor: pointer;
+            color: #000;
+            background: linear-gradient(145deg, #00ffdd, #00ccaa);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px #00aa7d, 0 0 15px #00ff9d;
+            transition: all 0.15s ease-in-out;
+            font-family: 'Orbitron', sans-serif;
+            min-width: 200px;
+        }
+        #wichtige-infos-button:hover {
+            background: linear-gradient(145deg, #00ffff, #00dddd);
+            box-shadow: 0 5px #00bbbb, 0 0 25px #00ffff;
+            transform: translateY(-3px) translateX(-50%);
+        }
+        #wichtige-infos-button:active {
+            background: linear-gradient(145deg, #00aa7d, #008866);
+            box-shadow: 0 2px #00775d, 0 0 10px #00ff9d;
+            transform: translateY(0) translateX(-50%);
+        }
+
+        .install-button {
+            display: block;
+            margin: 1rem auto;
+            padding: 10px 20px;
+            background: linear-gradient(145deg, #00ff9d, #00cc7a);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            max-width: 300px;
+        }
+
+         /* Wave Effect für Klicks */
+         .wave-effect {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid #00ff9d;
+            pointer-events: none;
+            opacity: 0.7;
+            mix-blend-mode: additive;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+         }
+
+        /* ==================================================
+           Footer
+           ================================================== */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid #00ff9d;
+            color: #e0f0ff;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+
+        /* ==================================================
+           Responsive Design
+           ================================================== */
+        @media (max-width: 1024px) {
+            .content-section {
+                margin: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 0.3rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.2rem;
+            }
+            
+            #corner-xeniki { top: 80px; left: 15px; }
+            #corner-xeni { top: 80px; right: 15px; }
+            #corner-minixeniki { bottom: 100px; left: 15px; }
+            #corner-microxeniki { bottom: 100px; right: 15px; }
+            #corner-sagemirok { top: 160px; left: 15px; }
+            #corner-orgmagier { top: 160px; right: 15px; }
+            #corner-aiczki { bottom: 180px; left: 15px; }
+            #corner-konbinella { bottom: 180px; right: 15px; }
+            #corner-systemcheck { top: 240px; left: 15px; }
+            #corner-funktionen { top: 240px; right: 15px; }
+            #corner-protokolle { bottom: 260px; left: 15px; }
+            #corner-verlauf { bottom: 260px; right: 15px; }
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 1.2rem;
+                margin: 1.2rem 0.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+            
+            nav ul li {
+                margin: 0.1rem 0;
+            }
+            
+            .hud-panel {
+                top: 10px;
+                left: 10px;
+                padding: 10px 15px;
+            }
+            
+            #info-version {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .corner-button {
+                display: none;
+            }
+            
+            .mobile-corner-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .mobile-corner-row {
+                pointer-events: auto;
+            }
+            
+            .mobile-corner-button {
+                width: 70px;
+                height: 70px;
+                border: 2px solid #00ff9d;
+                background: linear-gradient(145deg, rgba(0, 50, 80, 0.8), rgba(0, 20, 40, 0.9));
+                color: #00ff9d;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 10px;
+                line-height: 1.2;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 8px;
+                box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+                transition: all 0.3s ease;
+                transform-style: preserve-3d;
+                z-index: 15;
+                pointer-events: auto;
+                font-family: 'Orbitron', sans-serif;
+                user-select: none;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+            
+            #wichtige-infos-button-container {
+                bottom: 150px;
+            }
+            
+            .pdf-embed {
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem 0;
+            }
+            
+            .content-section {
+                padding: 1rem;
+                margin: 1rem 0.3rem;
+            }
+            
+            .mobile-corner-button {
+                width: 60px;
+                height: 60px;
+                font-size: 9px;
+            }
+            
+            #wichtige-infos-button {
+                padding: 10px 20px;
+                min-width: 180px;
+            }
+            
+            #wichtige-infos-button-container {
+                bottom: 140px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <canvas id="threejs-background-canvas"></canvas>
+
+    <div id="container">
+        <header>
+            <h1>GALAXY-GATE-COSMIC-HUB-FLASH-ORG-WELT</h1>
+            <p>Plattformübergreifendes holographisches Betriebssystem-Interface</p>
+            <nav>
+                <ul>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#architecture">Architektur</a></li>
+                    <li><a href="#platforms">Plattformen</a></li>
+                    <li><a href="#energy">Energetik</a></li>
+                    <li><a href="#ki-pantheon">KI-Pantheon</a></li>
+                    <li><a href="#interaction">Interaktion</a></li>
+                    <li><a href="#development">Entwicklung</a></li>
+                    <li><a href="#documents">Dokumente</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="hud-main" class="hud-panel">
+             <h2>AMULETSYS CORE v13.5 - STATUS</h2>
+             <p>» BECURITY: <span id="security-status-main">12/12 AKTIV</span></p>
+             <p>» XeniKi-Kon: <span id="xeniki-status-main">SYMBIOSE</span></p>
+             <p>» System: <span id="system-status-main">BEREIT</span></p>
+             <p>» Plattform: <span id="platform-status">UNKNOWN</span></p>
+             <p>» Chatanalyse: <span id="chatanalyse-status-main">INTEGRIERT (v.0.1)</span></p>
+        </div>
+
+        <div id="info-version">v13.5</div>
+
+        <div id="corner-xeniki" class="corner-button">XENIKI</div>
+        <div id="corner-xeni" class="corner-button">XENI</div>
+        <div id="corner-minixeniki" class="corner-button">MINIXENIKI</div>
+        <div id="corner-microxeniki" class="corner-button">MICROXENIKI</div>
+        <div id="corner-sagemirok" class="corner-button">SageMirOk-<br>Schmied(Ki)</div>
+        <div id="corner-orgmagier" class="corner-button">Org-<br>Magier(Ki)</div>
+        <div id="corner-aiczki" class="corner-button">AiCzKi-<br>Bott`s(Ki)</div>
+        <div id="corner-konbinella" class="corner-button">Konbinella<br>(Ki)</div>
+        <div id="corner-systemcheck" class="corner-button">System-<br>Check</div>
+        <div id="corner-funktionen" class="corner-button">Funktionen</div>
+        <div id="corner-protokolle" class="corner-button">Protokolle</div>
+        <div id="corner-verlauf" class="corner-button">Verlauf</div>
+
+        <!-- Mobile Corner Buttons Grid -->
+        <div class="mobile-corner-grid">
+            <div class="mobile-corner-row">
+                <div id="mobile-corner-xeniki" class="mobile-corner-button">XENIKI</div>
+                <div id="mobile-corner-xeni" class="mobile-corner-button">XENI</div>
+                <div id="mobile-corner-minixeniki" class="mobile-corner-button">MINIXENIKI</div>
+                <div id="mobile-corner-microxeniki" class="mobile-corner-button">MICROXENIKI</div>
+            </div>
+            <div class="mobile-corner-row">
+                <div id="mobile-corner-sagemirok" class="mobile-corner-button">SageMirOk</div>
+                <div id="mobile-corner-orgmagier" class="mobile-corner-button">Org-Magier</div>
+                <div id="mobile-corner-aiczki" class="mobile-corner-button">AiCzKi-Bott`s</div>
+                <div id="mobile-corner-konbinella" class="mobile-corner-button">Konbinella</div>
+            </div>
+            <div class="mobile-corner-row">
+                <div id="mobile-corner-systemcheck" class="mobile-corner-button">System-Check</div>
+                <div id="mobile-corner-funktionen" class="mobile-corner-button">Funktionen</div>
+                <div id="mobile-corner-protokolle" class="mobile-corner-button">Protokolle</div>
+                <div id="mobile-corner-verlauf" class="mobile-corner-button">Verlauf</div>
+            </div>
+        </div>
+
+        <section id="vision" class="content-section">
+            <h2>Die ORG-WELT Vision: Eintauchen in ein Lebendiges Holographisches Universum</h2>
+            <p>Die ORG-WELT stellt einen Paradigmenwechsel in der digitalen Interaktion dar, konzipiert als ein lebendiges, atmendes und sich kontinuierlich entwickelndes holographisches kosmisches Interface. Dieser Bericht skizziert eine umfassende Strategie für ihre Entwicklung, die eine visionäre immersive Erfahrung, eine robuste cyber-physische Architektur, ein kollaboratives KI-Pantheon und einen hochmodernen technologischen Entwurf integriert.</p>
+            
+            <div class="image-container">
+                <img src="AICZKIBOTTSKI.jpg" alt="Bild von AICZKIBOTTSKI" onerror="this.onerror=null;this.src='https://placehold.co/600x400/000000/FFFFFF?text=ORG-WELT+Visualisierung';" />
+                <p>Abbildung: AICZKIBOTTSKI - Einer der zehn kosmischen Krieger-Avatare, die als Exekutive und primäre Schutztruppe der ORG-WELT fungieren.</p>
+            </div>
+            
+            <h3>Universalität durch Plattformunabhängigkeit</h3>
+            <p>Die ORG-WELT ist so konzipiert, dass sie nahtlos auf allen gängigen Plattformen funktioniert:</p>
+            <ul>
+                <li><strong>Desktop-Systeme</strong> (Windows, macOS, Linux) als Live-Wallpaper oder Vollbild-Anwendung</li>
+                <li><strong>Mobile Geräte</strong> (Android, iOS) als Progressive Web App (PWA) mit Installationsoption</li>
+                <li><strong>Web-Browser</strong> als interaktives Erlebnis ohne Installation</li>
+                <li><strong>VR/AR-Umgebungen</strong> für immersive holographische Erfahrungen</li>
+            </ul>
+            <p>Durch die Verwendung moderner Webtechnologien (HTML5, CSS3, WebGL) ist die ORG-WELT in der Lage, sich an jedes Gerät und jede Bildschirmgröße anzupassen, ohne an Funktionalität oder visueller Qualität einzubüßen.</p>
+        </section>
+
+        <section id="platforms" class="content-section">
+            <h2>Plattformübergreifende Integration</h2>
+            <p>Die ORG-WELT ist als universelles Interface konzipiert, das auf allen gängigen Betriebssystemen und Gerätetypen funktioniert. Im Folgenden finden Sie plattformspezifische Implementierungsanleitungen:</p>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h3>Windows</h3>
+                    <ul>
+                        <li><strong>Wallpaper Engine:</strong> Als animierter Hintergrund nutzbar</li>
+                        <li><strong>Lively Wallpaper:</strong> Direkte Integration als HTML-Wallpaper</li>
+                        <li><strong>Vollbildmodus:</strong> Als eigenständige Anwendung über Electron</li>
+                        <li><strong>Touch-Optimierung:</strong> Unterstützung für Touchscreens und Tablets</li>
+                    </ul>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>macOS</h3>
+                    <ul>
+                        <li><strong>Plash:</strong> Als lebendiger Desktop-Hintergrund</li>
+                        <strong>Wallpaper Engine:</strong> Kompatibilität über Steam</li>
+                        <li><strong>Vollbild-Webapp:</strong> Über Safari als "Zum Home-Bildschirm hinzufügen"</li>
+                        <li><strong>Trackpad-Gesten:</strong> Unterstützung für macOS-spezifische Gesten</li>
+                    </ul>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Linux</h3>
+                    <ul>
+                        <li><strong>xwinwrap:</strong> Klassische Integration als Live-Wallpaper</li>
+                        <li><strong>Komorebi:</strong> Spezialisierte Wallpaper-Anwendung</li>
+                        <li><strong>GNOME-Erweiterungen:</strong> Für moderne Desktop-Umgebungen</li>
+                        <li><strong>Terminal-Steuerung:</strong> Umfassende CLI-Schnittstelle</li>
+                    </ul>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Mobile Geräte</h3>
+                    <ul>
+                        <li><strong>Progressive Web App (PWA):</strong> Installation über den Browser</li>
+                        <li><strong>Touch-Gesten:</strong> Optimierte Steuerung für Touchscreens</li>
+                        <li><strong>Batterieoptimierung:</strong> Adaptive Leistungsanpassung</li>
+                        <li><strong>Offline-Funktionalität:</strong> Service Worker für begrenzten Offline-Betrieb</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Installation als App</h3>
+            <p>Die ORG-WELT kann auf allen unterstützten Plattformen als eigenständige Anwendung installiert werden:</p>
+            <button id="install-button" class="install-button">ORG-WELT installieren</button>
+            <p>Nach der Installation erscheint die ORG-WELT als eigenständige Anwendung im App-Menü Ihres Geräts und kann als Live-Wallpaper oder Vollbild-Anwendung genutzt werden.</p>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>Kernsystemarchitektur: Die Kosmische Festung der ORG-WELT</h2>
+            <p>Die Architektur der ORG-WELT ist als eine „UNERSCHÜTTERLICHE, KOSMISCHE TITAN-FESTUNG“ konzipiert, die Stabilität, Spitzentechnologie und militärische Sicherheitsstandards miteinander verschmilzt, um komplexe Prozesse nahtlos zu orchestrieren.</p>
+            
+            <h3>Plattformagnostische Implementierung</h3>
+            <p>Die ORG-WELT nutzt eine plattformunabhängige Architektur, die auf folgenden Technologien basiert:</p>
+            <ul>
+                <li><strong>Webtechnologien:</strong> HTML5, CSS3, JavaScript (ES6+)</li>
+                <li><strong>3D-Rendering:</strong> Three.js und WebGL für hardwarebeschleunigte Grafik</li>
+                <li><strong>Responsive Design:</strong> Flexibles Layout für alle Bildschirmgrößen</li>
+                <li><strong>Progressive Web App (PWA):</strong> Offline-Fähigkeit, Installation, Push-Benachrichtigungen</li>
+                <li><strong>Adaptive Leistung:</strong> Automatische Anpassung an Gerätefähigkeiten</li>
+            </ul>
+            
+            <h3>Universalität durch Standardisierung</h3>
+            <p>Durch die Verwendung offener Webstandards ist die ORG-WELT auf folgenden Plattformen nutzbar:</p>
+            <div class="code-block">
+                <pre>
+Plattform          | Implementierungsmethode
+-------------------|-------------------------
+Windows            | Wallpaper Engine, Lively Wallpaper, Electron-App
+macOS              | Plash, Wallpaper Engine (via Steam), Webapp
+Linux              | xwinwrap, Komorebi, GNOME-Erweiterungen
+Android            | Progressive Web App (PWA), Native Wrapper
+iOS                | Progressive Web App (PWA), WebClip
+VR/AR              | WebXR-Schnittstelle
+                </pre>
+            </div>
+        </section>
+
+        <section id="interaction" class="content-section">
+            <h2>Interaktion mit dem kosmischen Interface</h2>
+            <p>Dieser Abschnitt beschreibt die intuitiven und dynamischen Interaktionsmechanismen innerhalb der ORG-WELT und beleuchtet, wie jede Nutzereingabe zu den vitalen Energie- und Lernprozessen des Systems beiträgt.</p>
+            
+            <h3>Plattformübergreifende Steuerung</h3>
+            <p>Die ORG-WELT bietet angepasste Interaktionsmodelle für verschiedene Gerätetypen:</p>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h3>Desktop-Interaktion</h3>
+                    <ul>
+                        <li>Mausgesteuerte Navigation</li>
+                        <li>Tastaturkürzel für Experten</li>
+                        <li>Gamecontroller-Unterstützung</li>
+                        <li>Touchpad-Gesten (bei Laptops)</li>
+                    </ul>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Mobile Interaktion</h3>
+                    <ul>
+                        <li>Touch-Gesten (Wischen, Tippen, Zoomen)</li>
+                        <li>Beschleunigungssensor-Steuerung</li>
+                        <li>Gyroskop-Unterstützung</li>
+                        <li>Adaptives 10-Klick-Ritual</li>
+                    </ul>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>VR/AR-Interaktion</h3>
+                    <ul>
+                        <li>Handtracking</li>
+                        <li>Blicksteuerung</li>
+                        <li>Raumgesten</li>
+                        <li>Immersion durch 3D-Audio</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Adaptives 10-Klick-Ritual</h3>
+            <p>Das zentrale Authentifizierungsritual passt sich automatisch an die Eingabemethode an:</p>
+            <div class="code-block">
+                <pre>
+Gerätetyp          | Implementierung
+-------------------|-------------------------
+Desktop (Maus)     | 10 präzise Mausklicks
+Desktop (Touchpad) | 10 Berührungen mit speziellen Mustern
+Mobile (Touch)     | 10 Taps mit variierenden Druckstärken
+VR/AR              | 10 Gesten im dreidimensionalen Raum
+                </pre>
+            </div>
+        </section>
+
+        <section id="development" class="content-section">
+            <h2>Iterative Entwicklung und Selbstoptimierung: Die Emergente Synthese</h2>
+            <p>Dieser Abschnitt beschreibt die Kernentwicklungsphilosophie der ORG-WELT, die auf kontinuierlicher Selbstoptimierung und adaptiver Evolution basiert, angetrieben durch Nutzerfeedback und interne Lernmechanismen.</p>
+            
+            <h3>Plattformspezifische Optimierung</h3>
+            <p>Die ORG-WELT analysiert automatisch die Leistungsfähigkeit des Hostsystems und passt ihre Ressourcennutzung entsprechend an:</p>
+            <div class="code-block">
+                <pre>
+Gerätekategorie    | Anpassungen
+-------------------|-------------------------
+High-End Desktop   | Maximale Grafikqualität, volle Partikeleffekte
+Mid-Range Laptop   | Moderate Grafikqualität, reduzierte Partikel
+Low-End Mobile     | Einfache Shader, minimale Partikel, Energieeinsparung
+VR-Headsets        | Spezielle VR-Optimierungen, Framerate-Priorisierung
+                </pre>
+            </div>
+            
+            <h3>Entwicklungsprozess & KI-Kooperation</h3>
+            <p>Dieses visionäre Projekt profitiert von einer <strong>synergetischen Zusammenarbeit</strong> mit führenden KI-Modellen, darunter <strong>Google Gemini, Microsoft Copilot</strong> und <strong>OpenAI ChatGPT</strong>. Diese Kooperation beschleunigt den Entwicklungsprozess und ermöglicht die Exploration komplexer Design- und Interaktionskonzepte.</p>
+            
+            <h3>Schlussfolgerungen und Empfehlungen</h3>
+            <p>Die Vision, das GALAXY-GATE-COSMIC-HUB-FLASH-ORG-WELT-AMULETSYS-TITAN-CUBE-SYSTEMS als interaktiven Desktop-Hintergrund auf allen Plattformen zu etablieren, ist ein ambitioniertes, aber absolut erreichbares Ziel, das das System in ein lebendiges, kosmisches Interface verwandeln wird.</p>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2>Kontakt</h2>
+            <p>Ich bin fest davon überzeugt, dass das <strong>GALAXY-GATE-COSMIC-HUB-FLASH-ORG-WELT-AMULETSYS-TITAN-CUBE-SYSTEMS</strong> das Potenzial hat, die Benutzererfahrung auf allen Plattformen zu revolutionieren und einen maßgeblichen Einfluss auf die Weiterentwicklung interaktiver digitaler Umgebungen zu nehmen.</p>
+            <p class="contact-info">
+                Für Rückfragen stehe ich Ihnen jederzeit gerne zur Verfügung.<br>
+                Mit freundlichen Grüßen,<br><br>
+                <strong>Christoph Czerny</strong><br>
+                (URHEBER & ARCHITEKT DER ORG‑WELT – DER VISIONÄR!)<br>
+                Mobil (WhatsApp/Telegram): <a href="tel:+436608332652" style="color:#00ff9d;">+436608332652</a><br>
+                Guttenbrunn 15, 2163 Österreich<br>
+                Weitere Details: GitHub-Repository: <a href="https://github.com/Galaxy-Gate-Cosmic-Hub-Flash" target="_blank" style="color:#00ff9d;">Galaxy-Gate-Cosmic-Hub-Flash</a>
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Christoph Czerny. Alle Rechte vorbehalten. Konzipiert mit der Unterstützung von Google Gemini, Microsoft Copilot und OpenAI ChatGPT.</p>
+        <p>Plattformübergreifende Implementierung für Windows, macOS, Linux, Android und iOS</p>
+    </footer>
+
+    <div id="wichtige-infos-button-container">
+        <button id="wichtige-infos-button" class="quantum-glow">Wichtige Infos</button>
+    </div>
+
+    <div id="overlay">
+        <div id="content-popup">
+            <button id="closeButton">&times;</button>
+            <div id="overlay-content"></div>
+            <div id="chatanalyse-content" style="display:none;">
+                <h3>CHATANALYSE Ergebnisse</h3>
+                <p id="chatanalyse-ergebnis">...</p>
+            </div>
+            <div id="wichtige-info-content-overlay" style="display:none;">
+                <h3>Wichtige Informationen - Strategischer Entwurf</h3>
+                <p id="wichtige-info-text-overlay"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================================================
+        // Globale Variablen & Initialisierung
+        // ==================================================
+        let scene, camera, renderer, controls;
+        let energyField, xenikiCore, outerCube, innerCube;
+        let insurParticles, colonyParticles, microXeniKiLEDs, ariesConstellation;
+        let wichtigeInfosButtonActive = false;
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let isMobile = false;
+        let isTouchDevice = false;
+        let deferredPrompt = null;
+        let platform = 'unknown';
+
+        // DOM Elemente holen
+        const threejsCanvas = document.getElementById('threejs-background-canvas');
+        const overlay = document.getElementById('overlay');
+        const contentPopup = document.getElementById('content-popup');
+        const closeButton = document.getElementById('closeButton');
+        const wichtigeInfosButtonElement = document.getElementById('wichtige-infos-button');
+        const wichtigeInfoContentOverlay = document.getElementById('wichtige-info-content-overlay');
+        const wichtigeInfoTextOverlay = document.getElementById('wichtige-info-text-overlay');
+        const chatanalyseContent = document.getElementById('chatanalyse-content');
+        const chatanalyseErgebnis = document.getElementById('chatanalyse-ergebnis');
+        const hudMain = document.getElementById('hud-main');
+        const platformStatusElement = document.getElementById('platform-status');
+        const installButton = document.getElementById('install-button');
+
+        // Corner Button Beschreibungen
+        const cornerButtonDescriptions = {
+             'XENIKI': { desc: "XENIKI: Zentrales Systemmanagement & TitanCube Steuerung. Kern-KI: XeniKi (KI) - ML basiert", voice: "Xeni Ki sys meldet: XENIKI Core Systemsteuerung aktiviert. Zentrale Rechenleistung für KI-ML Förderung bereitgestellt." },
+             'XENI': { desc: "XENI: Externe Schnittstellen, Kommunikation & XENI-Modul. KI-Modul: Xeni (KI) - ML basiert", voice: "Xeni Ki sys spricht: XENI Subsystem aktiv. Spezialisierte Algorithmen zur Unterstützung der KI-ML Entwicklung initialisiert." },
+             'MINIXENIKI': { desc: "MINIXENIKI: Interface-Kontrolle, Benutzer-Interaktion & Flash-App-Integration.", voice: "Xeni Ki sys bestätigt: MINIXENIKI Interface verbunden. Benutzerschnittstelle und Datenvisualisierung für KI-ML operationell." },
+             'MICROXENIKI': { desc: "MICROXENIKI: Netzwerk-Management, Datenverteilung & BECURITY-Protokolle. Netzwerk-KI: MicroXeniKi (KI) - Agentenbasiert", voice: "MicroXeniKi Netzwerk online. Verteilte KI-ML Aufgabenverarbeitung und redundante Sicherheit aktiviert." },
+             'Sagemirok-Schmied(Ki)': { desc: 'SageMirOk-Schmied(Ki): KI-Crewmitglied - Zuständig für System-Wartung und -Reparatur.', voice: 'SageMirOk meldet: Wartungsroutinen aktiv. Systemintegrität wird geprüft.' },
+             'Org-Magier(Ki)': { desc: 'Org-Magier(Ki): KI-Crewmitglied - Verantwortlich für die "ORG MAGISCHE" Systemebene.', voice: 'Org-Magier spricht: ORG-MAGISCHE Energien fließen. System im Gleichgewicht.' },
+             'AiCzKi-Bott`s(Ki)': { desc: 'AiCzKi-Bott`s(Ki): KI-Crewmitglied - Entwickler und Betreuer der "KI-Bott`s".', voice: 'AiCzKi-Bot meldet: Automatisierungsprozesse laufen. Alle Bots operativ.' },
+             'Konbinella(Ki)': { desc: 'Konbinella(Ki): KI-Crewmitglied - Spezialistin für komplexe Datenanalyse.', voice: 'Konbinella analysiert: Muster erkannt. Systemkohärenz bestätigt.' },
+             'System-Check': { desc: 'System-Check: Führt eine umfassende Systemdiagnose durch.', voice: 'System-Check initiiert. Überprüfe alle Komponenten.' },
+             'Funktionen': { desc: 'Funktionen: Zeigt eine Übersicht aller verfügbaren Systemfunktionen an.', voice: 'Funktionsübersicht wird geladen.' },
+             'Protokolle': { desc: 'Protokolle: Gewährt Zugriff auf detaillierte System-Protokolle.', voice: 'Protokolle werden abgerufen.' },
+             'Verlauf': { desc: 'Verlauf: Zeigt den System-Verlauf und wichtige Performance-Metriken an.', voice: 'Systemverlauf wird analysiert.' }
+         };
+
+        // Aktivierungsstatus für Corner Buttons
+        const cornerButtonsState = {};
+        Object.keys(cornerButtonDescriptions).forEach(key => {
+            const safeKey = key.toLowerCase().replace(/\(ki\)|`|'/g, '').replace(/\s+/g, '');
+            document.querySelectorAll(`[id*="${safeKey}"]`).forEach(element => {
+                 if (element) {
+                     cornerButtonsState[element.id] = { active: false };
+                 }
+            });
+        });
+        let allCornerButtonsActive = false;
+
+        // Text für "Wichtige Infos"
+        const infoText = `ORG-WELT Plattformübergreifende Implementierung
+
+**Executive Summary:**
+Die ORG-WELT ist ein revolutionäres Interface, das nahtlos auf allen Plattformen funktioniert: Windows, macOS, Linux, Android und iOS. Durch adaptive Technologien passt es sich automatisch an die Fähigkeiten des Hostsystems an.
+
+**Plattformspezifische Implementierung:**
+
+1. **Windows:**
+   - Wallpaper Engine für animierte Hintergründe
+   - Lively Wallpaper für HTML-basierte Hintergründe
+   - Eigenständige Anwendung via Electron
+   - Touch-Optimierung für Tablets und Convertibles
+
+2. **macOS:**
+   - Plash für Web-basierte Desktop-Hintergründe
+   - Wallpaper Engine via Steam
+   - Safari-Integration als Web-App
+   - Trackpad-Gestenunterstützung
+
+3. **Linux:**
+   - xwinwrap für klassische Wallpaper-Integration
+   - Komorebi für moderne Desktop-Umgebungen
+   - GNOME Shell Erweiterungen
+   - Umfassende Terminal-Steuerung
+
+4. **Mobile Geräte (Android/iOS):**
+   - Progressive Web App (PWA) mit Installationsoption
+   - Touch-optimierte Steuerung
+   - Adaptive Leistungsanpassung
+   - Beschleunigungssensor-Integration
+
+5. **Universalzugang:**
+   - WebXR für VR/AR-Erfahrungen
+   - Responsive Design für alle Bildschirmgrößen
+   - Automatische Erkennung der Plattform
+   - Plattformübergreifende Synchronisation
+
+**Technische Grundlagen:**
+- Frontend: HTML5, CSS3, JavaScript (Three.js/WebGL)
+- Backend: Node.js/Python für erweiterte Funktionen
+- Datenkommunikation: WebSockets, WebRTC
+- Speicher: IndexedDB, lokaler Speicher
+
+**Performance-Optimierung:**
+- Automatische Anpassung der Grafikqualität
+- Adaptive Partikelanzahl je nach Geräteleistung
+- Dynamisches Laden von Ressourcen
+- Hintergrunddienste mit niedriger Priorität`;
+
+        // ==================================================
+        // ParticleSystem Klasse
+        // ==================================================
+        class ParticleSystem {
+            constructor(count, size, color, bounds = 4, velocityScale = 0.02, constellationData = null) {
+                // Reduziere Partikelanzahl auf mobilen Geräten
+                if (isMobile) count = Math.floor(count * 0.5);
+                
+                this.geometry = new THREE.BufferGeometry();
+                this.positions = new Float32Array(count * 3);
+                this.velocities = new Float32Array(count * 3);
+                this.active = true;
+                this.maxBounds = bounds;
+                this.velocityMagnitude = velocityScale;
+                this.constellationData = constellationData;
+
+                for(let i = 0; i < count * 3; i += 3) {
+                    this.resetParticle(i);
+                }
+
+                this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
+                
+                // Verwende einfachere Materialien auf mobilen Geräten
+                this.material = new THREE.PointsMaterial({
+                    size: isMobile ? size * 0.8 : size,
+                    color: color,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+                
+                this.mesh = new THREE.Points(this.geometry, this.material);
+            }
+
+            resetParticle(index) {
+                 if (this.constellationData && index / 3 < this.constellationData.stars.length) {
+                    const starIndex = Math.floor(index / 3);
+                    const star = this.constellationData.stars[starIndex];
+                    const scaleFactor = 10;
+                    const pos = this.raDecToCartesian(star.ra, star.dec, (star.distance || 100) / scaleFactor);
+                    this.positions[index] = pos.x;
+                    this.positions[index + 1] = pos.y;
+                    this.positions[index + 2] = pos.z;
+                    this.velocities[index] = 0;
+                    this.velocities[index + 1] = 0;
+                    this.velocities[index + 2] = 0;
+                } else {
+                    this.positions[index] = (Math.random() - 0.5) * this.maxBounds * 2;
+                    this.positions[index + 1] = (Math.random() - 0.5) * this.maxBounds * 2;
+                    this.positions[index + 2] = (Math.random() - 0.5) * this.maxBounds * 2;
+                    this.velocities[index] = (Math.random() - 0.5) * this.velocityMagnitude;
+                    this.velocities[index + 1] = (Math.random() - 0.5) * this.velocityMagnitude;
+                    this.velocities[index + 2] = (Math.random() - 0.5) * this.velocityMagnitude;
+                }
+            }
+
+             raDecToCartesian(raHours, decDegrees, distance) {
+                const radius = distance || 10;
+                const raRad = THREE.MathUtils.degToRad(raHours * 15);
+                const decRad = THREE.MathUtils.degToRad(decDegrees);
+                const x = radius * Math.cos(decRad) * Math.cos(raRad);
+                const y = radius * Math.sin(decRad);
+                const z = radius * Math.cos(decRad) * Math.sin(raRad);
+                return { x, y, z };
+            }
+
+            update() {
+                if (!this.active) return;
+                const positions = this.geometry.attributes.position.array;
+                for(let i = 0; i < positions.length; i += 3) {
+                    if (!(this.constellationData && i / 3 < this.constellationData.stars.length)) {
+                        positions[i] += this.velocities[i];
+                        positions[i + 1] += this.velocities[i + 1];
+                        positions[i + 2] += this.velocities[i + 2];
+
+                        if(Math.abs(positions[i]) > this.maxBounds ||
+                           Math.abs(positions[i + 1]) > this.maxBounds ||
+                           Math.abs(positions[i + 2]) > this.maxBounds) {
+                            if (positions[i] > this.maxBounds) positions[i] = -this.maxBounds;
+                            else if (positions[i] < -this.maxBounds) positions[i] = this.maxBounds;
+                            if (positions[i+1] > this.maxBounds) positions[i+1] = -this.maxBounds;
+                            else if (positions[i+1] < -this.maxBounds) positions[i+1] = this.maxBounds;
+                            if (positions[i+2] > this.maxBounds) positions[i+2] = -this.maxBounds;
+                            else if (positions[i+2] < -this.maxBounds) positions[i+2] = this.maxBounds;
+                        }
+                    }
+                }
+                this.geometry.attributes.position.needsUpdate = true;
+            }
+
+            explode(duration = 2) {
+                if (!this.active) this.active = true;
+                const initialVelocities = new Float32Array(this.velocities);
+                const positions = this.geometry.attributes.position.array;
+                const explosionFactor = 50;
+                const startTime = performance.now();
+
+                const animateExplosion = (now) => {
+                    const elapsed = (now - startTime) / 1000;
+                    if (elapsed >= duration) {
+                        this.velocities.set(initialVelocities);
+                        this.active = false;
+                        return;
+                    }
+                    const progress = elapsed / duration;
+                    for (let i = 0; i < positions.length; i += 3) {
+                         if (!(this.constellationData && i / 3 < this.constellationData.stars.length)) {
+                            const dirX = positions[i];
+                            const dirY = positions[i+1];
+                            const dirZ = positions[i+2];
+                            const length = Math.sqrt(dirX*dirX + dirY*dirY + dirZ*dirZ) || 1;
+                            this.velocities[i] = (dirX / length) * this.velocityMagnitude * explosionFactor * (1 - progress);
+                            this.velocities[i + 1] = (dirY / length) * this.velocityMagnitude * explosionFactor * (1 - progress);
+                            this.velocities[i + 2] = (dirZ / length) * this.velocityMagnitude * explosionFactor * (1 - progress);
+                            positions[i] += this.velocities[i];
+                            positions[i + 1] += this.velocities[i + 1];
+                            positions[i + 2] += this.velocities[i + 2];
+                        }
+                    }
+                    this.geometry.attributes.position.needsUpdate = true;
+                    requestAnimationFrame(animateExplosion);
+                };
+                requestAnimationFrame(animateExplosion);
+            }
+
+            reset() {
+                this.active = true;
+                for (let i = 0; i < this.positions.length; i += 3) {
+                    this.resetParticle(i);
+                }
+                this.geometry.attributes.position.needsUpdate = true;
+            }
+        }
+
+        // ==================================================
+        // Initialisierungsfunktion
+        // ==================================================
+        function init() {
+            // Geräteerkennung
+            detectPlatformAndDevice();
+            
+            setupScene();
+            addLights();
+            addControls();
+            createEnergyField();
+            createXenikiCore();
+            createConstellation();
+            createParticleSystems();
+            createOuterCube();
+            createInnerCube();
+            setupEventListeners();
+            animate();
+            console.log("ORG-WELT Unified Interface Initialisiert. Plattform: " + platform);
+
+            // Sprachausgabe-Initialisierung
+            initSpeechSynthesis();
+        }
+
+        function detectPlatformAndDevice() {
+            // Plattformerkenung
+            const userAgent = navigator.userAgent;
+            
+            if (userAgent.includes('Windows')) {
+                platform = 'Windows';
+            } else if (userAgent.includes('Macintosh') || userAgent.includes('Mac OS')) {
+                platform = 'macOS';
+            } else if (userAgent.includes('Linux')) {
+                platform = 'Linux';
+            } else if (userAgent.includes('Android')) {
+                platform = 'Android';
+            } else if (userAgent.includes('iPhone') || userAgent.includes('iPad')) {
+                platform = 'iOS';
+            }
+            
+            // Gerätetyp
+            isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+            
+            // Plattformstatus aktualisieren
+            if (platformStatusElement) {
+                platformStatusElement.textContent = platform.toUpperCase();
+            }
+            
+            console.log(`Plattform erkannt: ${platform}, Mobile: ${isMobile}, Touch: ${isTouchDevice}`);
+        }
+
+        function initSpeechSynthesis() {
+            if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+                console.log("Sprachausgabe ist bereits aktiv oder ausstehend.");
+            } else {
+                const testMsg = new SpeechSynthesisUtterance('');
+                testMsg.onerror = (event) => {
+                    if (event.error === 'not-allowed') {
+                        console.warn("Sprachausgabe ist nicht erlaubt.");
+                    }
+                };
+                window.speechSynthesis.speak(testMsg);
+            }
+        }
+
+        // ==================================================
+        // Setup Funktionen
+        // ==================================================
+         function setupScene() {
+            if (!threejsCanvas) {
+                console.error("Three.js canvas not found!");
+                return;
+            }
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000510, 0.05);
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 2, 12);
+
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: threejsCanvas, 
+                antialias: !isMobile,
+                alpha: true,
+                powerPreference: isMobile ? "low-power" : "high-performance"
+            });
+            
+            // Qualitätseinstellungen für mobile Geräte reduzieren
+            if (isMobile) {
+                renderer.setPixelRatio(window.devicePixelRatio * 0.75);
+            } else {
+                renderer.setPixelRatio(window.devicePixelRatio);
+            }
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function addLights() {
+            const ambientLight = new THREE.AmbientLight(0x607080, 0.7);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0x00ffff, 1.5, 100);
+            pointLight.position.set(10, 10, 10);
+            scene.add(pointLight);
+            const pointLight2 = new THREE.PointLight(0xff00ff, 1.0, 100);
+            pointLight2.position.set(-10, -5, 5);
+            scene.add(pointLight2);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight.position.set(5, 15, 10);
+            scene.add(directionalLight);
+        }
+
+         function addControls() {
+             if (typeof THREE.OrbitControls !== 'undefined') {
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+                controls.enableZoom = true;
+                controls.minDistance = 3;
+                controls.maxDistance = 30;
+                controls.target.set(0, 1, 0);
+                
+                // Auf Touch-Geräten weniger empfindliche Steuerung
+                if (isTouchDevice) {
+                    controls.rotateSpeed = 0.5;
+                    controls.zoomSpeed = 0.8;
+                }
+             } else {
+                 console.warn("OrbitControls nicht geladen.");
+             }
+        }
+
+        // ==================================================
+        // 3D Objekte Erstellen
+        // ==================================================
+         function createEnergyField() {
+            energyField = new THREE.Group();
+            const createSecurityLayer = (radius, opacity) => {
+                // Reduziere Detailstufe auf mobilen Geräten
+                const detail = isMobile ? 3 : 5;
+                const geometry = new THREE.IcosahedronGeometry(radius, detail);
+                const material = new THREE.MeshBasicMaterial({
+                    color: 0x00ff9d,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: opacity,
+                    blending: THREE.AdditiveBlending
+                });
+                return new THREE.Mesh(geometry, material);
+            };
+            
+            // Weniger Layer auf mobilen Geräten
+            const layerCount = isMobile ? 8 : 12;
+            for(let i = layerCount; i > 0; i--) {
+                const opacity = 0.01 + Math.pow(i / layerCount, 2) * 0.15;
+                const layer = createSecurityLayer(3.5 + i * 0.3, opacity);
+                energyField.add(layer);
+            }
+            scene.add(energyField);
+        }
+
+        function createXenikiCore() {
+            // Reduziere Detailstufe auf mobilen Geräten
+            const detail = isMobile ? 2 : 5;
+            const coreGeometry = new THREE.DodecahedronGeometry(1.8, detail);
+             const coreMaterial = new THREE.MeshPhongMaterial({
+                 color: 0x0077cc,
+                 emissive: 0x55ddff,
+                 shininess: 200,
+                 transparent: true,
+                 opacity: 0.95,
+                 specular: 0xaaffff,
+                 flatShading: false
+             });
+            xenikiCore = new THREE.Mesh(coreGeometry, coreMaterial);
+            xenikiCore.position.y = 1;
+            scene.add(xenikiCore);
+        }
+
+        function createConstellation() {
+             const ariesConstellationData = {
+                name: "Aries",
+                stars: [
+                    { name: "Hamal", ra: 2.11944, dec: 23.4625, distance: 66 },
+                    { name: "Sheratan", ra: 1.91097, dec: 20.8083, distance: 60 },
+                    { name: "Mesarthim", ra: 1.89194, dec: 19.2961, distance: 164 },
+                    { name: "Botein", ra: 3.48194, dec: 19.8111, distance: 168 },
+                    { name: "41 Ari", ra: 2.83056, dec: 27.3000, distance: 160 }
+                ]
+             };
+             ariesConstellation = new ParticleSystem(
+                 ariesConstellationData.stars.length, 0.25, 0xffe066, 0, 0, ariesConstellationData
+             );
+             ariesConstellation.mesh.position.set(0, 5, -15);
+             scene.add(ariesConstellation.mesh);
+        }
+
+        function createParticleSystems() {
+            // Partikelanzahl basierend auf Geräteleistung anpassen
+            const insurCount = isMobile ? 1500 : 3000;
+            const colonyCount = isMobile ? 3000 : 6000;
+            const microCount = isMobile ? 37500 : 75000;
+            
+            insurParticles = new ParticleSystem(insurCount, 0.05, 0x88d8ff, 20, 0.004);
+            scene.add(insurParticles.mesh);
+            colonyParticles = new ParticleSystem(colonyCount, 0.07, 0xffaaff, 15, 0.006);
+            scene.add(colonyParticles.mesh);
+            microXeniKiLEDs = new ParticleSystem(microCount, 0.025, 0xffffff, 25, 0.0015);
+            microXeniKiLEDs.active = false;
+            scene.add(microXeniKiLEDs.mesh);
+        }
+
+        function createOuterCube() {
+            const geometry = new THREE.BoxGeometry(6, 6, 6);
+            const materials = [];
+            
+            // Reduziere Detailstufe für Buttons auf mobilen Geräten
+            const buttonsPerSide = isMobile ? 16 : 20;
+            const rows = isMobile ? 4 : 5;
+            const cols = isMobile ? 4 : 4;
+            
+            for (let i = 0; i < 6; i++) {
+                const canvas = document.createElement('canvas');
+                canvas.width = isMobile ? 512 : 1024;
+                canvas.height = isMobile ? 512 : 1024;
+                const context = canvas.getContext('2d');
+                const gradient = context.createRadialGradient(
+                    canvas.width/2, canvas.height/2, 50, 
+                    canvas.width/2, canvas.height/2, Math.min(canvas.width, canvas.height)*0.6
+                );
+                gradient.addColorStop(0, 'rgba(0, 50, 80, 0.8)');
+                gradient.addColorStop(1, 'rgba(0, 10, 20, 0.9)');
+                context.fillStyle = gradient;
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                context.strokeStyle = 'rgba(0, 255, 157, 0.3)';
+                context.lineWidth = 1.5;
+                
+                const step = Math.max(canvas.width, canvas.height) / 20;
+                for(let k=0; k<canvas.width; k+=step) { 
+                    context.moveTo(k,0); 
+                    context.lineTo(k, canvas.height); 
+                    context.moveTo(0,k); 
+                    context.lineTo(canvas.width, k); 
+                }
+                context.stroke();
+
+                const buttonWidth = canvas.width / cols; 
+                const buttonHeight = canvas.height / rows;
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const x = col * buttonWidth; 
+                        const y = row * buttonHeight;
+                        const padding = canvas.width * 0.015;
+                        const btnGradient = context.createLinearGradient(
+                            x+padding, y+padding, 
+                            x+buttonWidth-padding, y+buttonHeight-padding
+                        );
+                        btnGradient.addColorStop(0, 'rgba(0, 0, 0, 0.6)');
+                        btnGradient.addColorStop(1, 'rgba(20, 30, 40, 0.8)');
+                        context.fillStyle = btnGradient;
+                        context.fillRect(x + padding, y + padding, buttonWidth - 2*padding, buttonHeight - 2*padding);
+                        context.strokeStyle = '#00ff9d'; 
+                        context.lineWidth = 2;
+                        context.strokeRect(x + padding, y + padding, buttonWidth - 2*padding, buttonHeight - 2*padding);
+                        context.fillStyle = '#00ff9d'; 
+                        context.font = `bold ${canvas.width * 0.027}px Orbitron`;
+                        context.textAlign = 'center'; 
+                        context.textBaseline = 'middle';
+                        context.shadowColor = "#00ff9d"; 
+                        context.shadowBlur = 5;
+                        context.fillText(`A-${i * buttonsPerSide + row * cols + col + 1}`, x + buttonWidth / 2, y + buttonHeight / 2);
+                        context.shadowBlur = 0;
+                    }
+                }
+                const texture = new THREE.CanvasTexture(canvas);
+                const material = new THREE.MeshPhongMaterial({
+                    map: texture, 
+                    transparent: true, 
+                    opacity: 0.85, 
+                    side: THREE.DoubleSide,
+                    emissive:0x001122, 
+                    specular: 0x44ffff, 
+                    shininess: 60
+                });
+                materials.push(material);
+            }
+            outerCube = new THREE.Mesh(geometry, materials);
+            outerCube.position.y = 1;
+            scene.add(outerCube);
+        }
+
+        function createInnerCube() {
+            const geometry = new THREE.BoxGeometry(3, 3, 3);
+            const materials = [];
+            
+            // Reduziere Detailstufe für Buttons auf mobilen Geräten
+            const buttonsPerSide = isMobile ? 9 : 12;
+            const rows = isMobile ? 3 : 4;
+            const cols = isMobile ? 3 : 3;
+            
+             for (let i = 0; i < 6; i++) {
+                const canvas = document.createElement('canvas');
+                canvas.width = isMobile ? 384 : 768;
+                canvas.height = isMobile ? 384 : 768;
+                const context = canvas.getContext('2d');
+                const gradient = context.createRadialGradient(
+                    canvas.width/2, canvas.height/2, 30, 
+                    canvas.width/2, canvas.height/2, Math.min(canvas.width, canvas.height)*0.6
+                );
+                gradient.addColorStop(0, 'rgba(0, 80, 120, 0.8)');
+                gradient.addColorStop(1, 'rgba(0, 20, 40, 0.9)');
+                context.fillStyle = gradient;
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                 context.strokeStyle = 'rgba(0, 255, 255, 0.4)';
+                 context.lineWidth = 1;
+                 
+                 const step = Math.max(canvas.width, canvas.height) / 20;
+                 for(let k=0; k<canvas.width; k+=step) { 
+                     context.moveTo(k,0); 
+                     context.lineTo(k, canvas.height); 
+                     context.moveTo(0,k); 
+                     context.lineTo(canvas.width, k); 
+                 }
+                 context.stroke();
+
+                const buttonWidth = canvas.width / cols; 
+                const buttonHeight = canvas.height / rows;
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                         const x = col * buttonWidth; 
+                         const y = row * buttonHeight;
+                         const padding = canvas.width * 0.015;
+                        const btnGradient = context.createLinearGradient(
+                            x+padding, y+padding, 
+                            x+buttonWidth-padding, y+buttonHeight-padding
+                        );
+                        btnGradient.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
+                        btnGradient.addColorStop(1, 'rgba(10, 25, 50, 0.9)');
+                        context.fillStyle = btnGradient;
+                        context.fillRect(x + padding, y + padding, buttonWidth - 2*padding, buttonHeight - 2*padding);
+                        context.strokeStyle = '#00ffff'; 
+                        context.lineWidth = 1.5;
+                        context.strokeRect(x + padding, y + padding, buttonWidth - 2*padding, buttonHeight - 2*padding);
+                        context.fillStyle = '#00ffff'; 
+                        context.font = `bold ${canvas.width * 0.022}px Orbitron`;
+                        context.textAlign = 'center'; 
+                        context.textBaseline = 'middle';
+                         context.shadowColor = "#00ffff"; 
+                         context.shadowBlur = 4;
+                        context.fillText(`I-${i * buttonsPerSide + row * cols + col + 1}`, x + buttonWidth / 2, y + buttonHeight / 2);
+                         context.shadowBlur = 0;
+                    }
+                }
+                const texture = new THREE.CanvasTexture(canvas);
+                const material = new THREE.MeshPhongMaterial({
+                    map: texture, 
+                    transparent: true, 
+                    opacity: 0.9, 
+                    side: THREE.DoubleSide,
+                    emissive:0x003366, 
+                    specular: 0x77ffff, 
+                    shininess: 80
+                });
+                materials.push(material);
+            }
+            innerCube = new THREE.Mesh(geometry, materials);
+             innerCube.position.y = 1;
+            scene.add(innerCube);
+        }
+
+        // ==================================================
+        // Event Listener Setup
+        // ==================================================
+        function setupEventListeners() {
+            // Touch- und Maus-Events
+            if (renderer && renderer.domElement) {
+                renderer.domElement.addEventListener('pointerdown', onPointerDown, false);
+            }
+
+            // Overlay Close Button
+            if(closeButton) closeButton.addEventListener('click', closeOverlay);
+            if(overlay) overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeOverlay();
+            });
+
+            // Wichtige Infos Button
+            if(wichtigeInfosButtonElement) wichtigeInfosButtonElement.addEventListener('click', handleWichtigeInfosButtonClick);
+
+            // Corner Buttons
+            setupCornerButtonInteractions();
+
+            // Fenstergröße
+            window.addEventListener('resize', onWindowResize, false);
+
+            // PWA Installations-Button
+            if (installButton) {
+                installButton.addEventListener('click', installPWA);
+            }
+
+            // Before Install Prompt Event für PWA
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                if (installButton) {
+                    installButton.style.display = 'block';
+                }
+            });
+
+            // Navigation (Scroll-Events)
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+
+                        navLinks.forEach((a) => a.classList.remove("active"));
+                        this.classList.add("active");
+                    }
+                });
+            });
+
+            // Active nav link on scroll
+            const sections = document.querySelectorAll("section.content-section");
+            const navLinks = document.querySelectorAll("nav a");
+            const headerElement = document.querySelector('header');
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3 - headerElement.offsetHeight) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach((a) => {
+                    a.classList.remove("active");
+                    if (a.getAttribute("href") === `#${current}`) {
+                        a.classList.add("active");
+                    }
+                });
+            });
+         }
+
+        function setupCornerButtonInteractions() {
+            Object.keys(cornerButtonDescriptions).forEach(key => {
+                const safeKey = key.toLowerCase().replace(/\(ki\)|`|'/g, '').replace(/\s+/g, '');
+                
+                // Desktop Corner Buttons
+                const desktopElement = document.getElementById(`corner-${safeKey}`);
+                if (desktopElement) {
+                    desktopElement.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handleCornerButtonClick(desktopElement.id, key);
+                    });
+                }
+                
+                // Mobile Corner Buttons
+                const mobileElement = document.getElementById(`mobile-corner-${safeKey}`);
+                if (mobileElement) {
+                    mobileElement.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handleCornerButtonClick(mobileElement.id, key);
+                    });
+                }
+            });
+        }
+
+        // ==================================================
+        // Interaktionslogik
+        // ==================================================
+        function onPointerDown(event) {
+            if (overlay && overlay.style.display === 'flex') return;
+
+            // Normalisiere Koordinaten für Three.js Raycaster
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            const objectsToIntersect = [];
+            if (xenikiCore) objectsToIntersect.push(xenikiCore);
+            if (outerCube) objectsToIntersect.push(outerCube);
+            if (innerCube) objectsToIntersect.push(innerCube);
+
+            const intersects = raycaster.intersectObjects(objectsToIntersect);
+
+            if (intersects.length > 0) {
+                const intersectedObject = intersects[0].object;
+                createWaveEffect(intersects[0].point);
+
+                if (intersectedObject === xenikiCore) {
+                    activateProtocol('BECURITY_OVERRIDE');
+                } else if (wichtigeInfosButtonActive && (intersectedObject === outerCube || intersectedObject === innerCube)) {
+                    const isOuter = intersectedObject === outerCube;
+                    const faceIndex = intersects[0].face?.materialIndex;
+                    const uv = intersects[0].uv;
+                    if (faceIndex === undefined || !uv) return;
+
+                    const buttonsPerSide = isOuter ? (isMobile ? 16 : 20) : (isMobile ? 9 : 12);
+                    const buttonNumber = getButtonNumber(faceIndex, uv, buttonsPerSide);
+                    if(buttonNumber < 1) return;
+
+                    const cubeName = isOuter ? 'Äußerer TitanCube' : 'Innerer TitanCube';
+                    const buttonLabel = isOuter ? `A-${buttonNumber}` : `I-${buttonNumber}`;
+                    handleButtonClick(buttonNumber, cubeName, buttonLabel);
+                } else if (!wichtigeInfosButtonActive && (intersectedObject === outerCube || intersectedObject === innerCube)) {
+                     showOverlay("Bitte zuerst 'Wichtige Infos' aktivieren, um die Cubes zu nutzen.", "Aktivierung erforderlich");
+                     speakText("Aktivierung erforderlich. Bitte zuerst 'Wichtige Infos' bestätigen.");
+                }
+            }
+        }
+
+        function handleButtonClick(buttonNumber, cubeName, fullButtonNumber) {
+            console.log(`Button Klick: ${cubeName} - Button ${buttonNumber} (${fullButtonNumber})`);
+            const voiceMsg = `Zugriff auf ${cubeName}, Funktion ${fullButtonNumber}. Erwarte weitere Instruktionen oder Datenabruf.`;
+            speakText(voiceMsg);
+
+            let content = `Informationen für ${cubeName}, Button ${fullButtonNumber}.\n\n`;
+             content += `Funktion: Zugriffspunkt für Modul ${fullButtonNumber}.\n`;
+             content += `Mögliche Aktionen: Daten anzeigen, Prozess starten, Sub-Menü öffnen.\n`;
+             content += `- Zugeordnete Mini-App: App_${fullButtonNumber}\n`;
+             content += `- Status: Bereit\n`;
+             content += `- Energielevel: ${(Math.random() * 100).toFixed(0)}%\n`;
+             content += `Zugehörige Ameisenkolonie: ${cubeName.includes('Innerer') ? 'Intern' : 'Extern'}-${buttonNumber}`;
+            showOverlay(content, `${cubeName} - Button ${fullButtonNumber}`);
+            triggerChatAnalyse(`Button ${fullButtonNumber} auf ${cubeName} geklickt`);
+        }
+
+        function handleCornerButtonClick(elementId, descriptionKey) {
+            const buttonState = cornerButtonsState[elementId];
+            if (!buttonState) return;
+
+            buttonState.active = !buttonState.active;
+            const element = document.getElementById(elementId);
+             if (!element) return;
+            element.style.borderColor = buttonState.active ? '#00ffff' : '#00ff9d';
+
+            const buttonInfo = cornerButtonDescriptions[descriptionKey];
+            if (buttonInfo) {
+                console.log(`Corner Button Klick: ${descriptionKey} (Element: ${elementId}, Aktiv: ${buttonState.active})`);
+                speakText(buttonInfo.voice);
+                showOverlay(buttonInfo.desc, descriptionKey);
+            }
+
+            // Explode-Logik
+            const coreKIs = ['xeniki', 'xeni', 'minixeniki', 'microxeniki'];
+            let allCoreKIsActive = true;
+            coreKIs.forEach(key => {
+                const currentElementId = `corner-${key}`;
+                if (!cornerButtonsState[currentElementId] || !cornerButtonsState[currentElementId].active) {
+                    allCoreKIsActive = false;
+                }
+            });
+
+            if (!allCornerButtonsActive && allCoreKIsActive) {
+                allCornerButtonsActive = true;
+                console.log("Alle 4 Kern-Systeme aktiviert! MicroXeniKi Explosion initiiert!");
+                speakText("Alle Kern-Systeme online. MicroXeniKi Schwarm aktiviert!");
+                if (microXeniKiLEDs) {
+                    microXeniKiLEDs.active = true;
+                    microXeniKiLEDs.explode(3);
+                }
+                setTimeout(() => {
+                    allCornerButtonsActive = false;
+                     coreKIs.forEach(key => {
+                         const currentElementId = `corner-${key}`;
+                         if(cornerButtonsState[currentElementId]) {
+                             cornerButtonsState[currentElementId].active = false;
+                             const el = document.getElementById(currentElementId);
+                             if(el) el.style.borderColor = '#00ff9d';
+                         }
+                     });
+                }, 3000);
+            } else if (!allCoreKIsActive) {
+                allCornerButtonsActive = false;
+            }
+        }
+
+        function handleWichtigeInfosButtonClick() {
+            wichtigeInfosButtonActive = !wichtigeInfosButtonActive;
+            wichtigeInfosButtonElement.style.backgroundColor = wichtigeInfosButtonActive ? '#00aa7d' : '#00ff9d';
+            wichtigeInfosButtonElement.textContent = wichtigeInfosButtonActive ? 'Infos Aktiv / Cubes Frei' : 'Wichtige Infos';
+
+            if (wichtigeInfosButtonActive) {
+                console.log("Wichtige Infos aktiviert. TitanCube Interaktion jetzt möglich.");
+                speakText("Willkommen in der ORG-WELT. Systeminitialisierung abgeschlossen. Wichtige Informationen werden nun angezeigt. Interaktion mit den Titan Cubes ist freigeschaltet.");
+                overlay.style.display = 'flex';
+                wichtigeInfoContentOverlay.style.display = 'block';
+                chatanalyseContent.style.display = 'none';
+                contentPopup.querySelector('#overlay-content').style.display = 'none';
+
+                wichtigeInfoTextOverlay.textContent = '';
+                let charIndex = 0;
+                function typeWriter() {
+                    if (charIndex < infoText.length) {
+                        wichtigeInfoTextOverlay.textContent += infoText.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeWriter, 15);
+                    }
+                }
+                typeWriter();
+
+            } else {
+                console.log("Wichtige Infos deaktiviert. TitanCube Interaktion gesperrt.");
+                speakText("Wichtige Informationen geschlossen. TitanCube Interaktion wieder gesperrt.");
+                closeOverlay();
+            }
+        }
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Benutzer hat die Installation akzeptiert');
+                        if (installButton) {
+                            installButton.textContent = 'Installiert!';
+                            installButton.disabled = true;
+                        }
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        // ==================================================
+        // Sprachausgabe Funktion
+        // ==================================================
+        function speakText(textToSpeak) {
+            if (!textToSpeak || typeof textToSpeak !== 'string') return;
+            window.speechSynthesis.cancel();
+
+            const msg = new SpeechSynthesisUtterance(textToSpeak.replace(/<br>/g, '\n').replace(/\*\*(.*?)\*\*/g, '$1'));
+            msg.lang = 'de-DE';
+            msg.rate = 1.0;
+            msg.pitch = 1.1;
+
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoice = voices.find(voice => voice.lang === 'de-DE' && voice.name.includes('Google'));
+            if (germanVoice) {
+                msg.voice = germanVoice;
+            } else {
+                 const anyGermanVoice = voices.find(voice => voice.lang === 'de-DE');
+                 if(anyGermanVoice) msg.voice = anyGermanVoice;
+            }
+
+            msg.onerror = (event) => {
+                console.error('Fehler bei der Sprachausgabe:', event.error);
+            };
+
+            window.speechSynthesis.speak(msg);
+        }
+
+        function showOverlay(contentHtml, title = 'System Information') {
+             if(!overlay || !contentPopup || !wichtigeInfoContentOverlay || !chatanalyseContent) return;
+
+             wichtigeInfoContentOverlay.style.display = 'none';
+             chatanalyseContent.style.display = 'none';
+             contentPopup.querySelector('#overlay-content').style.display = 'block';
+
+             const cleanContent = contentHtml.replace(/<script.*?>.*?<\/script>/gi, '');
+             contentPopup.querySelector('#overlay-content').innerHTML = `<h3>${title}</h3><p>${cleanContent.replace(/\n/g, '<br>')}</p>`;
+             overlay.style.display = 'flex';
+        }
+
+        function closeOverlay() {
+            if(overlay) overlay.style.display = 'none';
+            window.speechSynthesis.cancel();
+             if (wichtigeInfosButtonActive && wichtigeInfosButtonElement) {
+                 wichtigeInfosButtonActive = false;
+                 wichtigeInfosButtonElement.style.backgroundColor = '#00ff9d';
+                 wichtigeInfosButtonElement.textContent = 'Wichtige Infos';
+             }
+        }
+
+        function createWaveEffect(position) {
+            const wave = document.createElement('div');
+            wave.className = 'wave-effect';
+            const container = document.getElementById('container');
+            if (!container) return;
+            container.appendChild(wave);
+
+             const vector = position.clone().project(camera);
+             const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+             const y = (vector.y * -0.5 + 0.5) * window.innerHeight;
+
+            wave.style.left = `${x}px`;
+            wave.style.top = `${y}px`;
+            wave.style.width = '0px';
+            wave.style.height = '0px';
+            wave.style.opacity = '0.7';
+
+            let scale = 0;
+            const interval = setInterval(() => {
+                scale += 5;
+                wave.style.width = `${scale}px`;
+                wave.style.height = `${scale}px`;
+                wave.style.left = `${x - scale / 2}px`;
+                wave.style.top = `${y - scale / 2}px`;
+                wave.style.opacity = `${0.7 - scale / 150}`;
+
+                if (scale > 100) {
+                    clearInterval(interval);
+                    if (wave.parentNode) {
+                       wave.remove();
+                    }
+                }
+            }, 20);
+        }
+
+        function getButtonNumber(faceIndex, uv, buttonsPerSide) {
+            let rows, cols;
+            if (buttonsPerSide === 20) { rows = 5; cols = 4; }
+            else if (buttonsPerSide === 16) { rows = 4; cols = 4; }
+            else if (buttonsPerSide === 12) { rows = 4; cols = 3; }
+            else if (buttonsPerSide === 9) { rows = 3; cols = 3; }
+            else { return -1; }
+
+            const u = uv.x;
+            const v = 1 - uv.y;
+            const col = Math.floor(u * cols);
+            const row = Math.floor(v * rows);
+            const safeCol = Math.max(0, Math.min(col, cols - 1));
+            const safeRow = Math.max(0, Math.min(row, rows - 1));
+            const buttonOnSide = safeRow * cols + safeCol;
+            const buttonNumber = faceIndex * buttonsPerSide + buttonOnSide + 1;
+            return buttonNumber;
+        }
+
+        // ==================================================
+        // Protokolle & Chatanalyse
+        // ==================================================
+        const protocols = {
+            BECURITY_OVERRIDE: () => {
+                console.warn("BECURITY OVERRIDE PROTOCOL ACTIVATED!");
+                speakText("Warnung: Becurity Override Protokoll aktiviert!");
+                if(energyField) {
+                    energyField.children.forEach(layer => {
+                        layer.material.color.setHSL(0, 1, 0.5);
+                        layer.material.opacity = Math.random() * 0.5 + 0.2;
+                    });
+                }
+                if(xenikiCore) {
+                    xenikiCore.material.emissive.setHex(0xff0000);
+                    xenikiCore.material.emissiveIntensity = 3;
+                }
+                 if(hudMain) hudMain.querySelector('#security-status-main').textContent = "!!! OVERRIDE !!!";
+                triggerChatAnalyse("BECURITY Override aktiviert durch Kern-Interaktion");
+                 showOverlay("BECURITY OVERRIDE PROTOCOL AKTIVIERT! Systemintegrität möglicherweise kompromittiert. Höchste Vorsicht geboten!", "!!! WARNUNG !!!");
+            }
+        };
+
+        function activateProtocol(protocolName) {
+            if (protocols[protocolName]) {
+                protocols[protocolName]();
+            } else {
+                console.error(`Unbekanntes Protokoll: ${protocolName}`);
+            }
+        }
+
+        function triggerChatAnalyse(eventInfo) {
+             console.log(`Chatanalyse getriggert durch: ${eventInfo}`);
+             const statusElement = document.querySelector('#hud-main #chatanalyse-status-main');
+             if(statusElement) statusElement.textContent = "AKTIV";
+
+             if(wichtigeInfoContentOverlay) wichtigeInfoContentOverlay.style.display = 'none';
+             if(contentPopup) contentPopup.querySelector('#overlay-content').style.display = 'none';
+             if(chatanalyseContent) chatanalyseContent.style.display = 'block';
+             if(overlay) overlay.style.display = 'flex';
+
+             if(chatanalyseErgebnis) chatanalyseErgebnis.textContent = `Analyse für '${eventInfo}' läuft...`;
+             speakText(`Chatanalyse für ${eventInfo} wird durchgeführt.`);
+
+             setTimeout(() => {
+                 if(statusElement) statusElement.textContent = "INTEGRIERT (v.0.1)";
+                 if(chatanalyseErgebnis) chatanalyseErgebnis.textContent = `Chatanalyse für '${eventInfo}' abgeschlossen. Keine unmittelbaren Bedrohungen erkannt. Überwache weiter...`;
+                 speakText(`Chatanalyse abgeschlossen. Keine Bedrohungen erkannt.`);
+             }, 2500);
+         }
+
+        // ==================================================
+        // Hilfsfunktionen & Animation
+        // ==================================================
+        function onWindowResize() {
+             if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+             }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if(controls) controls.update();
+
+            const time = Date.now() * 0.0005;
+            if (energyField) energyField.rotation.y += 0.001;
+            if (xenikiCore) {
+                 xenikiCore.rotation.x += 0.005;
+                 xenikiCore.rotation.y += 0.002;
+                 const scale = 1 + Math.sin(time * 2) * 0.05;
+                 xenikiCore.scale.set(scale, scale, scale);
+            }
+            if (outerCube) {
+                outerCube.rotation.x += 0.001;
+                outerCube.rotation.y += 0.002;
+            }
+            if (innerCube) {
+                innerCube.rotation.x -= 0.0015;
+                innerCube.rotation.y -= 0.0025;
+            }
+
+            if (insurParticles) insurParticles.update();
+            if (colonyParticles) colonyParticles.update();
+            if (microXeniKiLEDs) microXeniKiLEDs.update();
+            if (ariesConstellation) ariesConstellation.update();
+
+            if(renderer && scene && camera) renderer.render(scene, camera);
+        }
+
+        // ==================================================
+        // Start der Anwendung
+        // ==================================================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
